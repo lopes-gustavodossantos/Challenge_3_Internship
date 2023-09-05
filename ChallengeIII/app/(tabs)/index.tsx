@@ -36,14 +36,14 @@ export default function FirstScreen() {
 
       <Pressable
         style={styles.buttonSignIn}
-        onPress={() => navigation.navigate("second" as never)}
+        onPress={() => navigation.navigate("home" as never)}
       >
         <Text style={styles.buttonText}>Sign In</Text>
       </Pressable>
 
       <Pressable
         style={styles.buttonSignUp}
-        onPress={() => navigation.navigate("second" as never)}
+        onPress={() => navigation.navigate("home" as never)}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
