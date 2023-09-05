@@ -33,6 +33,20 @@ export default function FirstScreen() {
 
       <Text style={styles.title}>Plant Paradise</Text>
       <Text style={styles.byline}>Find your favorite plants and help the environment</Text>
+
+      <Pressable
+        style={styles.buttonSignIn}
+        onPress={() => navigation.navigate("second" as never)}
+      >
+        <Text style={styles.buttonText}>Sign In</Text>
+      </Pressable>
+
+      <Pressable
+        style={styles.buttonSignUp}
+        onPress={() => navigation.navigate("second" as never)}
+      >
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </Pressable>
     </View>
   );
 }
@@ -43,7 +57,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    height: 350,
+    height: 442,
     flexShrink: 0,
   },
   imageHeader: {
@@ -74,6 +88,37 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 20,
     color: "#000000",
+  },
+  buttonSignIn: {
+    width: 360,
+    height: 48,
+    marginTop: 100,
+    left: 25,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#418B64",
+  },
+  buttonSignUp: {
+    width: 360,
+    height: 48,
+    marginTop: 25,
+    left: 25,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#418B64",
+  },
+  buttonText: {
+    width: 100,
+    height: 24,
+    fontFamily: "Source Sans Pro",
+    fontWeight: "400",
+    fontSize: 24,
+    fontStyle: "normal",
+    lineHeight: 24,
+    textAlign: "center",
+    color: "#FFFFFF",
   },
   content: {
     flex: 1,
