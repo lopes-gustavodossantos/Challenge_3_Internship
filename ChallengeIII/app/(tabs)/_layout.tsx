@@ -1,23 +1,16 @@
 import { useFonts } from "expo-font";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
-
-import Colors from '../../constants/Colors';
+import { Tabs } from 'expo-router';
+import { useColorScheme } from 'react-native';
 
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={28} style={{ marginBottom: -3, color: props.color }} {...props} />;
 }
 
 export default function TabLayout() {
@@ -27,11 +20,14 @@ export default function TabLayout() {
     "Source Sans Pro": require("../../assets/fonts/SourceSansPro.ttf"),
   });
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarStyle: {
           display: 'flex',
           width: '100%',
@@ -44,8 +40,9 @@ export default function TabLayout() {
           justifyContent: 'center',
           alignItems: 'center',
           flexShrink: 0,
-          backgroundColor: "#00ff00",
+          backgroundColor: "#ffffff",
         },
+        tabBarActiveTintColor: "#418B64",
       }}>
       <Tabs.Screen
         name="index"
@@ -57,7 +54,7 @@ export default function TabLayout() {
         name="home"
         options={{
           title: 'Home',
-          tabBarIcon: () => <SimpleLineIcons name="home" size={30} color="#000000" />,
+          tabBarIcon: ({ color }) => <SimpleLineIcons name="home" size={30} color={color} />,
           tabBarLabelStyle: { 
             width: 40,
             height: 14,
@@ -67,7 +64,6 @@ export default function TabLayout() {
             fontSize: 14,
             fontStyle: "normal",
             lineHeight: 14,
-            color: "#000000",
           },
         }}
       />
@@ -75,7 +71,7 @@ export default function TabLayout() {
         name="favorites"
         options={{
           title: 'Favorites',
-          tabBarIcon: () => <MaterialIcons name="favorite-border" size={30} color="#000000" />,
+          tabBarIcon: ({ color }) => <MaterialIcons name="favorite-border" size={30} color={color} />,
           tabBarLabelStyle: { 
             width: 54,
             height: 14,
@@ -85,7 +81,6 @@ export default function TabLayout() {
             fontSize: 14,
             fontStyle: "normal",
             lineHeight: 14,
-            color: "#000000",
           },
         }}
       />
@@ -93,7 +88,7 @@ export default function TabLayout() {
         name="cart"
         options={{
           title: 'Cart',
-          tabBarIcon: () => <SimpleLineIcons name="bag" size={30} color="#000000" />,
+          tabBarIcon: ({ color }) => <SimpleLineIcons name="bag" size={30} color={color} />,
           tabBarLabelStyle: { 
             width: 25,
             height: 14,
@@ -103,8 +98,8 @@ export default function TabLayout() {
             fontSize: 14,
             fontStyle: "normal",
             lineHeight: 14,
-            color: "#000000",
           },
+
         }}
       />
     </Tabs>
