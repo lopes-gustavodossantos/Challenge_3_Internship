@@ -21,20 +21,7 @@ export default function FirstScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.hi}>Hi,</Text>
-        <Text style={styles.title}>Cart</Text>
-
-        <Pressable
-          style={styles.buttonContainer}
-          onPress={() => navigation.navigate("index" as never)}
-        >
-          <Image
-            source={require("../../assets/images/profile_image.png")}
-            style={styles.buttonImage}
-          />
-        </Pressable>
-      </View>
+      <Text style={styles.title}>Cart</Text>
     </View>
   );
 }
@@ -44,14 +31,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
-  header: {
-    width: "100%",
-    height: 350,
-    flexShrink: 0,
-    backgroundColor: "#0000ff",
-  },
-  hi: {
-    width: 97,
+  title: {
+    width: 54,
     height: 24,
     top: 82,
     left: 24,
@@ -61,26 +42,5 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 27,
     color: "#000000",
-  },
-  title: {
-    width: 135,
-    height: 24,
-    top: 146,
-    left: 24,
-    fontFamily: "Poppins Medium",
-    fontWeight: "600",
-    fontSize: 20,
-    fontStyle: "normal",
-    lineHeight: 24,
-    color: "#000000",
-  },
-  buttonContainer: {
-    position: "absolute",
-    top: 79,
-    right: 24,
-  },
-  buttonImage: {
-    width: 30,
-    height: 30,
   },
 });
