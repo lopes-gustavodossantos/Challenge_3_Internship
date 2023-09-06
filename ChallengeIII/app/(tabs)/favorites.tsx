@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Favoritescreen() {
+export default function FavoriteScreen() {
   const navigation = useNavigation();
 
   const [fontsLoaded] = useFonts({
@@ -29,7 +29,7 @@ export default function Favoritescreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#FFFFFF",
   },
   title: {
     width: 113,

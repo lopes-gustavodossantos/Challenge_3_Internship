@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Homecreen() {
+export default function HomeScreen() {
   const navigation = useNavigation();
 
   const [fontsLoaded] = useFonts({
@@ -42,13 +42,13 @@ export default function Homecreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#FFFFFF",
   },
   header: {
     width: "100%",
     height: 350,
     flexShrink: 0,
-    backgroundColor: "#00ff00",
+    backgroundColor: "#00FF00",
   },
   hi: {
     width: 97,

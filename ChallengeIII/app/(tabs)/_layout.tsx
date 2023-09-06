@@ -40,7 +40,7 @@ export default function TabLayout() {
           justifyContent: 'center',
           alignItems: 'center',
           flexShrink: 0,
-          backgroundColor: "#ffffff",
+          backgroundColor: "#FFFFFF",
         },
         tabBarActiveTintColor: "#418B64",
       }}>
@@ -48,8 +48,6 @@ export default function TabLayout() {
         name="index"
         options={{
           tabBarStyle: { display: "none" },
-          tabBarIcon: () => null, // Hide the icon by returning null
-          tabBarLabel: () => null, // Hide the label by returning null
         }}
       />
       <Tabs.Screen
