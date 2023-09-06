@@ -99,7 +99,12 @@ export default function TabLayout() {
             fontStyle: "normal",
             lineHeight: 14,
           },
-
+        }}
+      />
+      <Tabs.Screen
+        name="details"
+        options={{
+          title: 'Details',
         }}
       />
     </Tabs>

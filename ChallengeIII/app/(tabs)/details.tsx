@@ -26,11 +26,15 @@ export default function DetailsScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={handleGoBack} style={styles.backButton}>
-            <Image
-                source={require("../../assets/images/back_button.png")}
-            />
+        <Pressable
+          style={styles.backButton}
+          onPress={() => navigation.navigate("home" as never)}
+        >
+          <Image
+            source={require("../../assets/images/back_button.png")}
+          />
         </Pressable>
+        
         <Text style={styles.title}>Details</Text>
       </View>
     </View>
