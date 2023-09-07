@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
 import { Text, View, Pressable, StyleSheet, Image, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -12,11 +13,20 @@ export default function HomeScreen() {
     "Poppins Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
   });
 
+  const [selectedClassification, setSelectedClassification] = useState<number | null>(null);
+
+  useEffect(() => {
+  }, []);
+
   if (!fontsLoaded) {
     return null;
   }
 
   const popularItems = data.body.products.filter((item) => item.popular === 1);
+
+  const filteredItems = selectedClassification === null
+    ? data.body.products
+    : data.body.products.filter((item) => item.classification === selectedClassification);
 
   return (
     <View style={styles.container}>
@@ -58,10 +68,48 @@ export default function HomeScreen() {
             </View>
           )}
         />
+
+        <View style={styles.buttonRow}>
+          <Text
+            style={[
+              styles.allButton,
+              selectedClassification === null ? styles.activatedButton : styles.nonActivatedButton,
+            ]}
+            onPress={() => {
+              setSelectedClassification(null);
+            }}
+          >
+            All
+          </Text>
+
+          <Text
+            style={[
+              styles.indoorButton,
+              selectedClassification === 1 ? styles.activatedButton : styles.nonActivatedButton,
+            ]}
+            onPress={() => {
+              setSelectedClassification(1);
+            }}
+          >
+            Indoor
+          </Text>
+
+          <Text
+            style={[
+              styles.outdoorButton,
+              selectedClassification === 2 ? styles.activatedButton : styles.nonActivatedButton,
+            ]}
+            onPress={() => {
+              setSelectedClassification(2);
+            }}
+          >
+            Outdoor
+          </Text>
+        </View>
       </View>
 
       <FlatList
-        data={data.body.products}
+        data={filteredItems}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
@@ -79,6 +127,8 @@ export default function HomeScreen() {
   );
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -88,7 +138,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 450,
     flexShrink: 0,
-    backgroundColor: "#00FF00",
+    backgroundColor: "#FFFFFF",
   },
   hi: {
     width: 97,
@@ -114,6 +164,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: "#000000",
   },
+
   buttonContainer: {
     position: "absolute",
     top: 79,
@@ -123,6 +174,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+
   popularItemContainer: {
     flexDirection: "row",
     width: 287,
@@ -166,7 +218,7 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   popularItemPrice: {
-    width: 39,
+    width: 45,
     height: 14,
     marginTop: 5,
     fontFamily: "Poppins Medium",
@@ -176,6 +228,44 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: "#000000",
   },
+
+  buttonRow: {
+    flexDirection: "row",
+    height: 24,
+    left: 27,
+    marginBottom: 25,
+  },
+  allButton: {
+    width: 20,
+    flexShrink: 0,
+  },
+  indoorButton: {
+    width: 52,
+    marginLeft: 40,
+    flexShrink: 0,
+  },
+  outdoorButton: {
+    width: 67,
+    marginLeft: 40,
+    flexShrink: 0,
+  },
+  activatedButton: {
+    fontFamily: "Poppins Regular",
+    fontWeight: "500",
+    fontSize: 16,
+    fontStyle: "normal",
+    lineHeight: 24,
+    color: "#000000",
+  },
+  nonActivatedButton: {
+    fontFamily: "Poppins Regular",
+    fontWeight: "500",
+    fontSize: 16,
+    fontStyle: "normal",
+    lineHeight: 24,
+    color: "#969595",
+  },
+
   itemContainer: {
     flex: 1,
     height: 279,
