@@ -1,20 +1,10 @@
 import { useFonts } from "expo-font";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import { useColorScheme } from 'react-native';
 
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3, color: props.color }} {...props} />;
-}
-
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
   const [fontsLoaded] = useFonts({
     "Source Sans Pro": require("../../assets/fonts/SourceSansPro.ttf"),
@@ -47,7 +37,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          title: 'Index',
           tabBarStyle: { display: "none" },
+          href: null,
         }}
       />
       <Tabs.Screen
@@ -105,6 +97,7 @@ export default function TabLayout() {
         name="details"
         options={{
           title: 'Details',
+          href: null,
         }}
       />
     </Tabs>
