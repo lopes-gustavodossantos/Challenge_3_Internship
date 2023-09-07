@@ -35,14 +35,6 @@ export default function TabLayout() {
         tabBarActiveTintColor: "#418B64",
       }}>
       <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Index',
-          tabBarStyle: { display: "none" },
-          href: null,
-        }}
-      />
-      <Tabs.Screen
         name="home"
         options={{
           title: 'Home',
@@ -93,10 +85,31 @@ export default function TabLayout() {
           },
         }}
       />
+
+      <Tabs.Screen
+        name="index"
+        options={{
+          tabBarStyle: { display: "none" },
+          href: null,
+        }}
+      />  
       <Tabs.Screen
         name="details"
         options={{
-          title: 'Details',
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="signIn"
+        options={{
+          tabBarStyle: { display: "none" },
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="signUp"
+        options={{
+          tabBarStyle: { display: "none" },
           href: null,
         }}
       />

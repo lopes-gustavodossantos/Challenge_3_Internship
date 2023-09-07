@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function FirstScreen() {
+export default function SignUpScreen() {
   const navigation = useNavigation();
 
   const [fontsLoaded] = useFonts({
@@ -31,19 +31,19 @@ export default function FirstScreen() {
         </ImageBackground>
       </View>
 
-      <Text style={styles.title}>Plant Paradise</Text>
+      <Text style={styles.title}>Sign Up</Text>
       <Text style={styles.byline}>Find your favorite plants and help the environment</Text>
 
       <Pressable
         style={styles.buttonSignIn}
-        onPress={() => navigation.navigate("signIn" as never)}
+        onPress={() => navigation.navigate("home" as never)}
       >
         <Text style={styles.buttonText}>Sign In</Text>
       </Pressable>
 
       <Pressable
         style={styles.buttonSignUp}
-        onPress={() => navigation.navigate("signUp" as never)}
+        onPress={() => navigation.navigate("home" as never)}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
