@@ -14,6 +14,7 @@ export default function HomeScreen() {
   });
 
   const [selectedClassification, setSelectedClassification] = useState<number | null>(null);
+  const [flatListKey, setFlatListKey] = useState("initial"); // Add flatListKey state
 
   useEffect(() => {
   }, []);
@@ -77,6 +78,7 @@ export default function HomeScreen() {
             ]}
             onPress={() => {
               setSelectedClassification(null);
+              setFlatListKey("all"); // Reset FlatList
             }}
           >
             All
@@ -89,6 +91,7 @@ export default function HomeScreen() {
             ]}
             onPress={() => {
               setSelectedClassification(1);
+              setFlatListKey("indoor"); // Reset FlatList
             }}
           >
             Indoor
@@ -101,6 +104,7 @@ export default function HomeScreen() {
             ]}
             onPress={() => {
               setSelectedClassification(2);
+              setFlatListKey("outdoor"); // Reset FlatList
             }}
           >
             Outdoor
@@ -110,6 +114,7 @@ export default function HomeScreen() {
 
       <FlatList
         data={filteredItems}
+        key={flatListKey} // Use key prop to reset FlatList
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
@@ -126,8 +131,6 @@ export default function HomeScreen() {
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
