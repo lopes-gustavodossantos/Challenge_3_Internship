@@ -130,7 +130,8 @@ export default function HomeScreen() {
                 navigation.navigate("details", { item });
               }}
             >
-              <FavoriteButton isFavorite={isFavorite(item.id)} onPress={() => toggleFavorite(item.id)} />
+              <FavoriteButton 
+              isFavorite={isFavorite(item.id)} onPress={() => toggleFavorite(item.id)} />
 
               <Image
                 source={{ uri: item.coverImageUrl }}
