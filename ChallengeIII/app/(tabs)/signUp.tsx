@@ -14,7 +14,7 @@ export default function SignUpScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // Estado para controlar a visibilidade da senha
+  const [showPassword, setShowPassword] = useState(false); 
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 

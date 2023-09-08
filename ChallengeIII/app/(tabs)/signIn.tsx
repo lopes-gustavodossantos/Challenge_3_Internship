@@ -1,20 +1,40 @@
-import { useFonts } from "expo-font";
+import React, { useState, useRef } from "react";
 import {
   Text,
   View,
+  TextInput,
   Pressable,
   StyleSheet,
-  ImageBackground,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useFonts } from "expo-font";
 
 export default function SignInScreen() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Estado para controlar a visibilidade da senha
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+
+  const handleSignUp = () => {
+    // Perform registration logic here, e.g., sending data to a server
+    // You can use 'name', 'email', and 'password' state values
+
+    // Reset the password field to empty after sign up
+    setEmail("");
+    setPassword("");
+
+    navigation.navigate("home");
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const [fontsLoaded] = useFonts({
     "Poppins Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
     "Poppins Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
-    "Source Sans Pro": require("../../assets/fonts/SourceSansPro.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -23,87 +43,82 @@ export default function SignInScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <ImageBackground
-          source={require("../../assets/images/header_background.png")}
-          style={styles.imageHeader}
-        >
-        </ImageBackground>
+      <Text style={styles.title}>Sign In</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        ref={emailInputRef}
+        onSubmitEditing={() => passwordInputRef.current.focus()}
+      />
+
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.passwordInput}
+          placeholder="Password"
+          secureTextEntry={!showPassword}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          ref={passwordInputRef}
+          onSubmitEditing={handleSignUp}
+        />
+        <Pressable onPress={toggleShowPassword} style={styles.showPasswordButton}>
+          <Text>{showPassword ? "Hide" : "Show"}</Text>
+        </Pressable>
       </View>
 
-      <Text style={styles.title}>Sign In</Text>
-      <Text style={styles.byline}>Find your favorite plants and help the environment</Text>
-
-      <Pressable
-        style={styles.buttonSignIn}
-        onPress={() => navigation.navigate("home" as never)}
-      >
-        <Text style={styles.buttonText}>Sign In</Text>
-      </Pressable>
-
-      <Pressable
-        style={styles.buttonSignUp}
-        onPress={() => navigation.navigate("home" as never)}
-      >
+      <Pressable style={styles.buttonSignUp} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-  },
-  header: {
-    width: "100%",
-    height: 442,
-    flexShrink: 0,
-  },
-  imageHeader: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+    alignItems: "center",
+    paddingTop: 40,
   },
   title: {
-    width: 225,
-    height: 100,
-    top: 40,
-    left: 24,
     fontFamily: "Poppins Medium",
     fontWeight: "600",
-    fontSize: 50,
-    fontStyle: "normal",
-    lineHeight: 55,
+    fontSize: 75,
     color: "#000000",
   },
-  byline: {
-    width: 249,
-    height: 40,
-    top: 60,
-    left: 24,
-    fontFamily: "Poppins Regular",
-    fontWeight: "400",
-    fontSize: 16,
-    fontStyle: "normal",
-    lineHeight: 20,
-    color: "#000000",
-  },
-  buttonSignIn: {
+  input: {
     width: 360,
     height: 48,
-    marginTop: 100,
-    left: 25,
+    marginTop: 20,
+    paddingLeft: 10,
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#BDBDBD",
+  },
+  passwordContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#418B64",
+    width: 360,
+    height: 48,
+    marginTop: 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#BDBDBD",
+  },
+  passwordInput: {
+    flex: 1,
+    paddingLeft: 10,
+  },
+  showPasswordButton: {
+    padding: 10,
   },
   buttonSignUp: {
     width: 360,
     height: 48,
     marginTop: 25,
-    left: 25,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
@@ -112,17 +127,11 @@ const styles = StyleSheet.create({
   buttonText: {
     width: 100,
     height: 24,
-    fontFamily: "Source Sans Pro",
+    fontFamily: "Poppins Regular",
     fontWeight: "400",
-    fontSize: 24,
-    fontStyle: "normal",
-    lineHeight: 24,
+    fontSize: 22,
     textAlign: "center",
+    lineHeight: 26,
     color: "#FFFFFF",
-  },
-  content: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
