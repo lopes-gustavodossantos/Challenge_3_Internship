@@ -6,6 +6,8 @@ import { FlatList } from "react-native";
 
 import data from "../../assets/api/data.json";
 
+import { MaterialIcons } from '@expo/vector-icons';
+
 type Plant = {
   id: number;
   name: string;
@@ -26,6 +28,20 @@ export default function HomeScreen() {
   const [selectedClassification, setSelectedClassification] = useState<number | null>(null);
   const [flatListKey, setFlatListKey] = useState("initial");
 
+  const [favoriteItems, setFavoriteItems] = useState<number[]>([]);
+
+  const toggleFavorite = (itemId: number) => {
+    if (isFavorite(itemId)) {
+      setFavoriteItems((prevFavorites) => prevFavorites.filter((id) => id !== itemId));
+    } else {
+      setFavoriteItems((prevFavorites) => [...prevFavorites, itemId]);
+    }
+  };
+  
+  const isFavorite = (itemId: number) => {
+    return favoriteItems.includes(itemId);
+  };
+  
   useEffect(() => {}, []);
 
   if (!fontsLoaded) {
@@ -69,10 +85,16 @@ export default function HomeScreen() {
                 navigation.navigate("details", { item });
               }}
             >
-              <Image
-                source={require("../../assets/images/favorite_button.png")}
-                style={styles.popularFavoriteButton}
-              />
+              <Pressable
+                style={styles.allFavoriteButton}
+                onPress={() => toggleFavorite(item.id)}
+              >
+                <Image source={require("../../assets/images/favorite_button.png")} />
+                <View style={styles.vetorAllFavoriteButton}>
+                  <MaterialIcons name="favorite" size={16} color={isFavorite(item.id) ? "#418B64" : "transparent"} />
+                </View>
+              </Pressable>
+
               <Image
                 source={{ uri: item.coverImageUrl }}
                 style={styles.popularItemImage}
@@ -139,10 +161,16 @@ export default function HomeScreen() {
                 navigation.navigate("details", { item });
               }}
             >
-              <Image
-                source={require("../../assets/images/favorite_button.png")}
+              <Pressable
                 style={styles.allFavoriteButton}
-              />
+                onPress={() => toggleFavorite(item.id)}
+              >
+                <Image source={require("../../assets/images/favorite_button.png")} />
+                <View style={styles.vetorAllFavoriteButton}>
+                  <MaterialIcons name="favorite" size={16} color={isFavorite(item.id) ? "#418B64" : "transparent"} />
+                </View>
+              </Pressable>
+
               <Image
                 source={{ uri: item.coverImageUrl }}
                 style={styles.itemImage}
@@ -350,12 +378,13 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   
-  popularFavoriteButton: {
+ allFavoriteButton: {
     position: 'absolute',
     width: 30,
     height: 30,
-    top: 4,
-    left: 4,
+    top: 12,
+    left: 12,
+    alignItems: "center",
     flexShrink: 0,
     zIndex: 1,
     shadowColor: "#000000",
@@ -363,12 +392,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
   },
- allFavoriteButton: {
+  vetorAllFavoriteButton: {
     position: 'absolute',
-    width: 30,
-    height: 30,
-    top: 12,
-    left: 12,
+    top: 8,
     flexShrink: 0,
     zIndex: 1,
     shadowColor: "#000000",
