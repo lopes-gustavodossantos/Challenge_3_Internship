@@ -6,6 +6,16 @@ import { FlatList } from "react-native";
 
 import data from "../../assets/api/data.json";
 
+type Plant = {
+  id: number;
+  name: string;
+  description: string;
+  coverImageUrl: string;
+  popular: number;
+  classification: number;
+  price: number;
+};
+
 export default function HomeScreen() {
   const navigation = useNavigation();
   const [fontsLoaded] = useFonts({
@@ -14,15 +24,13 @@ export default function HomeScreen() {
   });
 
   const [selectedClassification, setSelectedClassification] = useState<number | null>(null);
-  const [flatListKey, setFlatListKey] = useState("initial"); // Add flatListKey state
+  const [flatListKey, setFlatListKey] = useState("initial");
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   if (!fontsLoaded) {
     return null;
   }
-
   const popularItems = data.body.products.filter((item) => item.popular === 1);
 
   const filteredItems = selectedClassification === null
@@ -47,17 +55,24 @@ export default function HomeScreen() {
 
         <FlatList
           data={popularItems}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item: Plant) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => (
-            <View
+          renderItem={({ item, index }: { item: Plant; index: number }) => (
+            <Pressable
               style={[
                 styles.popularItemContainer,
                 index === 0 ? { marginLeft: 24 } : {},
                 index === popularItems.length - 1 ? { marginRight: 24 } : {},
               ]}
+              onPress={() => {
+                navigation.navigate("details", { item });
+              }}
             >
+              <Image
+                source={require("../../assets/images/favorite_button.png")}
+                style={styles.popularFavoriteButton}
+              />
               <Image
                 source={{ uri: item.coverImageUrl }}
                 style={styles.popularItemImage}
@@ -66,7 +81,7 @@ export default function HomeScreen() {
                 <Text style={styles.popularItemName}>{item.name}</Text>
                 <Text style={styles.popularItemPrice}>${item.price}</Text>
               </View>
-            </View>
+            </Pressable>
           )}
         />
 
@@ -78,7 +93,7 @@ export default function HomeScreen() {
             ]}
             onPress={() => {
               setSelectedClassification(null);
-              setFlatListKey("all"); // Reset FlatList
+              setFlatListKey("all");
             }}
           >
             All
@@ -91,7 +106,7 @@ export default function HomeScreen() {
             ]}
             onPress={() => {
               setSelectedClassification(1);
-              setFlatListKey("indoor"); // Reset FlatList
+              setFlatListKey("indoor");
             }}
           >
             Indoor
@@ -104,7 +119,7 @@ export default function HomeScreen() {
             ]}
             onPress={() => {
               setSelectedClassification(2);
-              setFlatListKey("outdoor"); // Reset FlatList
+              setFlatListKey("outdoor");
             }}
           >
             Outdoor
@@ -114,17 +129,27 @@ export default function HomeScreen() {
 
       <FlatList
         data={filteredItems}
-        key={flatListKey} // Use key prop to reset FlatList
-        keyExtractor={(item) => item.id.toString()}
+        key={flatListKey}
+        keyExtractor={(item: Plant) => item.id.toString()}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
+        renderItem={({ item }: { item: Plant }) => (
           <View style={styles.itemContainer}>
-            <Image
-              source={{ uri: item.coverImageUrl }}
-              style={styles.itemImage}
-            />
-            <Text style={styles.itemName}>{item.name}</Text>
-            <Text style={styles.itemPrice}>${item.price}</Text>
+            <Pressable
+              onPress={() => {
+                navigation.navigate("details", { item });
+              }}
+            >
+              <Image
+                source={require("../../assets/images/favorite_button.png")}
+                style={styles.allFavoriteButton}
+              />
+              <Image
+                source={{ uri: item.coverImageUrl }}
+                style={styles.itemImage}
+              />
+              <Text style={styles.itemName}>{item.name}</Text>
+              <Text style={styles.itemPrice}>${item.price}</Text>
+            </Pressable>
           </View>
         )}
       />
@@ -172,6 +197,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 79,
     right: 24,
+    zIndex: 1,
   },
   buttonImage: {
     width: 30,
@@ -186,7 +212,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     flexShrink: 0,
     borderRadius: 8,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FF00FF",
     ...Platform.select({
       ios: {
         shadowColor: "#000000",
@@ -203,6 +229,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: "100%",
     borderRadius: 8,
+    backgroundColor: "#FF00FF",
   },
   popularItemTextContainer: {
     flexDirection: 'column',
@@ -234,6 +261,7 @@ const styles = StyleSheet.create({
 
   buttonRow: {
     flexDirection: "row",
+    width: 220,
     height: 24,
     left: 27,
     marginBottom: 25,
@@ -276,7 +304,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     borderRadius: 8,
     marginBottom: 20,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FF00FF",
     ...Platform.select({
       ios: {
         shadowColor: "#000000",
@@ -320,5 +348,32 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 24,
     color: "#000000",
+  },
+  
+  popularFavoriteButton: {
+    position: 'absolute',
+    width: 30,
+    height: 30,
+    top: 4,
+    left: 4,
+    flexShrink: 0,
+    zIndex: 1,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+ allFavoriteButton: {
+    position: 'absolute',
+    width: 30,
+    height: 30,
+    top: 12,
+    left: 12,
+    flexShrink: 0,
+    zIndex: 1,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
 });
