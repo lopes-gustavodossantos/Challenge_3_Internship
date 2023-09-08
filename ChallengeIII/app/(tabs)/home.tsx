@@ -3,12 +3,12 @@ import { useFonts } from "expo-font";
 import { Text, View, Pressable, StyleSheet, Image, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native";
-
 import data from "../../assets/api/data.json";
 
-import { MaterialIcons } from '@expo/vector-icons';
+import FavoriteButton from '../../components/FavoriteButton';
+import PopularFlatlist from "../../components/PopularFlatList"; 
 
-type Plant = {
+export type Plant = {
   id: number;
   name: string;
   description: string;
@@ -69,42 +69,11 @@ export default function HomeScreen() {
           />
         </Pressable>
 
-        <FlatList
+        <PopularFlatlist
           data={popularItems}
-          keyExtractor={(item: Plant) => item.id.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }: { item: Plant; index: number }) => (
-            <Pressable
-              style={[
-                styles.popularItemContainer,
-                index === 0 ? { marginLeft: 24 } : {},
-                index === popularItems.length - 1 ? { marginRight: 24 } : {},
-              ]}
-              onPress={() => {
-                navigation.navigate("details", { item });
-              }}
-            >
-              <Pressable
-                style={styles.allFavoriteButton}
-                onPress={() => toggleFavorite(item.id)}
-              >
-                <Image source={require("../../assets/images/favorite_button.png")} />
-                <View style={styles.vetorAllFavoriteButton}>
-                  <MaterialIcons name="favorite" size={16} color={isFavorite(item.id) ? "#418B64" : "transparent"} />
-                </View>
-              </Pressable>
-
-              <Image
-                source={{ uri: item.coverImageUrl }}
-                style={styles.popularItemImage}
-              />
-              <View style={styles.popularItemTextContainer}>
-                <Text style={styles.popularItemName}>{item.name}</Text>
-                <Text style={styles.popularItemPrice}>${item.price}</Text>
-              </View>
-            </Pressable>
-          )}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+          navigation={navigation}
         />
 
         <View style={styles.buttonRow}>
@@ -161,15 +130,7 @@ export default function HomeScreen() {
                 navigation.navigate("details", { item });
               }}
             >
-              <Pressable
-                style={styles.allFavoriteButton}
-                onPress={() => toggleFavorite(item.id)}
-              >
-                <Image source={require("../../assets/images/favorite_button.png")} />
-                <View style={styles.vetorAllFavoriteButton}>
-                  <MaterialIcons name="favorite" size={16} color={isFavorite(item.id) ? "#418B64" : "transparent"} />
-                </View>
-              </Pressable>
+              <FavoriteButton isFavorite={isFavorite(item.id)} onPress={() => toggleFavorite(item.id)} />
 
               <Image
                 source={{ uri: item.coverImageUrl }}
@@ -230,61 +191,6 @@ const styles = StyleSheet.create({
   buttonImage: {
     width: 30,
     height: 30,
-  },
-
-  popularItemContainer: {
-    flexDirection: "row",
-    width: 287,
-    height: 140,
-    marginTop: 170,
-    marginHorizontal: 5,
-    flexShrink: 0,
-    borderRadius: 8,
-    backgroundColor: "#FFFFFF",
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000000",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
-  },
-  popularItemImage: {
-    width: 150,
-    height: "100%",
-    borderRadius: 8,
-    backgroundColor: "#FFFFFF",
-  },
-  popularItemTextContainer: {
-    flexDirection: 'column',
-    left: 16,
-    flexShrink: 0,
-  },
-  popularItemName: {
-    width: 85,
-    height: 16,
-    marginTop: 8,
-    fontFamily: "Poppins Regular",
-    fontWeight: "500",
-    fontSize: 14,
-    fontStyle: "normal",
-    lineHeight: 16,
-    color: "#000000",
-  },
-  popularItemPrice: {
-    width: 45,
-    height: 14,
-    marginTop: 5,
-    fontFamily: "Poppins Medium",
-    fontWeight: "600",
-    fontSize: 14,
-    fontStyle: "normal",
-    lineHeight: 16,
-    color: "#000000",
   },
 
   buttonRow: {
@@ -376,30 +282,5 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 24,
     color: "#000000",
-  },
-  
- allFavoriteButton: {
-    position: 'absolute',
-    width: 30,
-    height: 30,
-    top: 12,
-    left: 12,
-    alignItems: "center",
-    flexShrink: 0,
-    zIndex: 1,
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-  vetorAllFavoriteButton: {
-    position: 'absolute',
-    top: 8,
-    flexShrink: 0,
-    zIndex: 1,
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
   },
 });
