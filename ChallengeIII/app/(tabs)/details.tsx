@@ -5,21 +5,21 @@ import {
   Pressable,
   StyleSheet,
   Image,
+  Platform
 } from "react-native";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 
-// Define a type for your item data
 type Item = {
   id: number;
   name: string;
   description: string;
   coverImageUrl: string;
   popular: number;
+  category: string;
   classification: number;
   price: number;
 };
 
-// Define a custom type for your route params
 type DetailsScreenRouteParams = {
   item: Item;
 };
@@ -30,6 +30,7 @@ export default function DetailsScreen() {
 
   const [fontsLoaded] = useFonts({
     "Poppins Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -40,7 +41,6 @@ export default function DetailsScreen() {
     navigation.goBack();
   };
 
-  // Access the item data with the specified type
   const item = route.params.item;
 
   return (
@@ -58,14 +58,16 @@ export default function DetailsScreen() {
         <Text style={styles.title}>Details</Text>
       </View>
 
-      {/* Display the item data */}
-      <Text style={styles.itemName}>{item.name}</Text>
-      <Text style={styles.itemPrice}>{item.price}</Text>
       <Image
-                source={{ uri: item.coverImageUrl }}
-                style={styles.itemImage}
-              />
-      {/* Add more components to display other item details */}
+        source={{ uri: item.coverImageUrl }}
+        style={styles.itemImage}
+      />
+      <Text style={styles.itemCategory}>{item.category}</Text>
+      <Text style={styles.itemName}>{item.name}</Text>
+      <Text style={styles.itemPrice}>${item.price}</Text>
+
+      <View style={styles.tabBar}>
+      </View>
     </View>
   );
 }
@@ -104,36 +106,72 @@ const styles = StyleSheet.create({
     left: -176,
     flexShrink: 0,
   },
+
   itemImage: {
     width: "100%",
-    height: 209,
+    height: 247,
     flexShrink: 0,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
   },
-  itemName: {
-    width: 117,
-    height: 26,
-    left: 18,
-    marginTop: 10,
-    flexShrink: 0,
-    fontFamily: "Poppins Medium",
-    fontWeight: "600",
+  itemCategory: {
+    width: 100,
+    height: 24,
+    left: 24,
+    marginTop: 20,
+    fontFamily: "Poppins Regular",
+    fontWeight: "400",
     fontSize: 16,
     fontStyle: "normal",
     lineHeight: 24,
+    color: "#969595",
+  },
+  itemName: {
+    width: 231,
+    height: 24,
+    left: 24,
+    marginTop: 15,
+    fontFamily: "Poppins Medium",
+    fontWeight: "600",
+    fontSize: 28,
+    fontStyle: "normal",
+    lineHeight: 30,
     color: "#000000",
   },
   itemPrice: {
-    width: 45,
-    height: 25,
-    left: 18,
+    width: 56,
+    height: 19,
+    left: 24,
+    marginTop: 30,
     flexShrink: 0,
-    fontFamily: "Poppins Regular",
-    fontWeight: "400",
-    fontSize: 14,
+    fontFamily: "Poppins Medium",
+    fontWeight: "600",
+    fontSize: 20,
     fontStyle: "normal",
-    lineHeight: 24,
+    lineHeight: 23,
     color: "#000000",
+  },
+  tabBar: {
+    display: 'flex',
+    position: 'absolute',
+    width: '100%',
+    height: 85,
+    left: -1,
+    bottom: 0,
+    flexShrink: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0.601,
+    paddingLeft: 0.805,
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+    backgroundColor: "#FFFFFF",
   },
 });

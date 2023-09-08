@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     flexShrink: 0,
     borderRadius: 8,
-    backgroundColor: "#FF00FF",
+    backgroundColor: "#FFFFFF",
     ...Platform.select({
       ios: {
         shadowColor: "#000000",
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: "100%",
     borderRadius: 8,
-    backgroundColor: "#FF00FF",
+    backgroundColor: "#FFFFFF",
   },
   popularItemTextContainer: {
     flexDirection: 'column',
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     borderRadius: 8,
     marginBottom: 20,
-    backgroundColor: "#FF00FF",
+    backgroundColor: "#FFFFFF",
     ...Platform.select({
       ios: {
         shadowColor: "#000000",
