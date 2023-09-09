@@ -13,7 +13,7 @@ export default function SignInScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // Estado para controlar a visibilidade da senha
+  const [showPassword, setShowPassword] = useState(false);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
@@ -21,7 +21,6 @@ export default function SignInScreen() {
     // Perform registration logic here, e.g., sending data to a server
     // You can use 'name', 'email', and 'password' state values
 
-    // Reset the password field to empty after sign up
     setEmail("");
     setPassword("");
 
@@ -40,6 +39,12 @@ export default function SignInScreen() {
   if (!fontsLoaded) {
     return null;
   }
+
+  const goToSignUp = () => {
+    setEmail("");
+    setPassword("");
+    navigation.navigate("signUp");
+  };
 
   return (
     <View style={styles.container}>
@@ -68,10 +73,15 @@ export default function SignInScreen() {
           <Text>{showPassword ? "Hide" : "Show"}</Text>
         </Pressable>
       </View>
+      
+      <Text style={styles.signUpText} onPress={goToSignUp}>
+        Don't have an account? Sign Up
+      </Text>
 
       <Pressable style={styles.buttonSignUp} onPress={handleSignUp}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Sign In</Text>
       </Pressable>
+
     </View>
   );
 }
@@ -133,5 +143,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 26,
     color: "#FFFFFF",
+  },
+  signUpText: {
+    marginTop: 10,
+    color: "#418B64",
+    textDecorationLine: "underline",
   },
 });

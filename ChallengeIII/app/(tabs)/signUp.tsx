@@ -14,7 +14,7 @@ export default function SignUpScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
@@ -22,12 +22,11 @@ export default function SignUpScreen() {
     // Perform registration logic here, e.g., sending data to a server
     // You can use 'name', 'email', and 'password' state values
 
-    // Reset the password field to empty after sign up
     setName("");
     setEmail("");
     setPassword("");
 
-    navigation.navigate("index");
+    navigation.navigate("signIn");
   };
 
   const toggleShowPassword = () => {
@@ -42,6 +41,14 @@ export default function SignUpScreen() {
   if (!fontsLoaded) {
     return null;
   }
+
+  const goToSignIn = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    
+    navigation.navigate("signIn");
+  };
 
   return (
     <View style={styles.container}>
@@ -77,6 +84,10 @@ export default function SignUpScreen() {
           <Text>{showPassword ? "Hide" : "Show"}</Text>
         </Pressable>
       </View>
+
+      <Text style={styles.signInText} onPress={goToSignIn}>
+        Already have an account? Sign In
+      </Text>
 
       <Pressable style={styles.buttonSignUp} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
@@ -142,5 +153,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 26,
     color: "#FFFFFF",
+  },
+  signInText: {
+    marginTop: 10,
+    color: "#418B64",
+    textDecorationLine: "underline",
   },
 });
