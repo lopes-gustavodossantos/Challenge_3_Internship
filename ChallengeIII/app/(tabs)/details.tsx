@@ -11,12 +11,10 @@ import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 
 type Item = {
   id: number;
-  name: string;
+  title: string;
   description: string;
-  coverImageUrl: string;
-  popular: number;
+  image: string;
   category: string;
-  classification: number;
   price: number;
 };
 
@@ -59,11 +57,11 @@ export default function DetailsScreen() {
       </View>
 
       <Image
-        source={{ uri: item.coverImageUrl }}
+        source={{ uri: item.image }}
         style={styles.itemImage}
       />
       <Text style={styles.itemCategory}>{item.category}</Text>
-      <Text style={styles.itemName}>{item.name}</Text>
+      <Text style={styles.itemName}>{item.title}</Text>
       <Text style={styles.itemPrice}>${item.price}</Text>
 
       <View style={styles.tabBar}>
