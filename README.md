@@ -30,7 +30,7 @@ The first one with a background image, title, and two buttons that takes you to 
 >At the end of this file you will be able to see some images of the Project.
 
 <br> **Author:**
->Gustavo dos Santos Lopes
+>Gustavo Arenhart dos Santos Zanin Lopes
 
 <br> **For support:**
 >lopes.gustavodossantos@gmail.com
