@@ -28,7 +28,7 @@ The first one with a background image, title, and two buttons that takes you to 
 >For testing in emulator I used: Android 13 (Tiramisu) and Pixel 7 Pro as virtual device.
 
 <br> **Author:**
->Gustavo Arenhart dos Santos Zanin Lopes
+>Gustavo dos Santos Lopes
 
 <br> **For support:**
 >lopes.gustavodossantos@gmail.com
