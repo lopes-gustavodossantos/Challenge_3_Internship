@@ -27,20 +27,8 @@ The first one with a background image, title, and two buttons that takes you to 
 
 >For testing in emulator I used: Android 13 (Tiramisu) and Pixel 7 Pro as virtual device.
 
->At the end of this file you will be able to see some images of the Project.
-
 <br> **Author:**
 >Gustavo Arenhart dos Santos Zanin Lopes
 
 <br> **For support:**
 >lopes.gustavodossantos@gmail.com
-
-<br> **Images:**
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/f7cf24ed-3c9f-4387-afe0-27c5d4245436" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/df9041b4-6cf6-4a54-b8ba-96f2df69057a" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/27067861-07f8-424a-88c4-298c3ad1a37a" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/40a72e24-9858-4e1f-b189-68f456dd6064" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/d90e786e-e822-4ea3-a0e2-838714b9b4fe" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/514f9eac-1fed-48c5-b356-bd9def31b11f" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/f7b1fe80-aa79-483a-ace8-060dda6c3474" width="220" height="470">
-><img src="https://github.com/lopes-gustavodossantos/Challenge_3_Internship/assets/94156483/99d32d03-a3df-481c-82ef-cdb525eb4bd5" width="220" height="470">
