@@ -36,11 +36,12 @@ The first one with a background image, title, and two buttons that takes you to 
 >lopes.gustavodossantos@gmail.com
 
 <br> **Images:**
-![index](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/7af4bc0e-c3b3-435b-a58a-1aee0f94b358)
-![sign_in](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/77be5789-9673-48f2-b0d4-0950bc1c76ff)
-![sign_up](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/94c7d3d4-ea68-4bbc-96c7-cf43a5145797)
-![home](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/1d4a9256-0e9e-4baf-8ef9-95e339bb932d)
-![details](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/245e301f-56cd-4f1a-9e85-f2d006158087)
-![profile](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/adf1bdfe-acda-4c79-9121-e07dfd1b0f4d)
-![favorite](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/6324b4d7-17de-47a9-add2-9a9072d5160b)
-![cart](https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/4da3a59d-138b-441a-88d1-6e27188d613f)
+
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/7af4bc0e-c3b3-435b-a58a-1aee0f94b358" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/77be5789-9673-48f2-b0d4-0950bc1c76ff" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/94c7d3d4-ea68-4bbc-96c7-cf43a5145797" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/1d4a9256-0e9e-4baf-8ef9-95e339bb932d" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/245e301f-56cd-4f1a-9e85-f2d006158087" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/adf1bdfe-acda-4c79-9121-e07dfd1b0f4d" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/6324b4d7-17de-47a9-add2-9a9072d5160b" width="144" height="312">
+<img src="https://github.com/lopes-gustavodossantos/Challenge_3_React_Native/assets/94156483/4da3a59d-138b-441a-88d1-6e27188d613f" width="144" height="312">
