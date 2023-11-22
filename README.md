@@ -27,6 +27,8 @@ The first one with a background image, title, and two buttons that takes you to 
 
 >For testing in emulator I used: Android 13 (Tiramisu) and Pixel 7 Pro as virtual device.
 
+>At the end of this file you will be able to see some images of the Project.
+
 <br> **Author:**
 >Gustavo dos Santos Lopes
 
